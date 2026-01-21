@@ -269,16 +269,6 @@ http://localhost:9090
 
 ---
 
-![Image](https://devopscube.com/content/images/2025/03/image-118-9.png)
-
-![Image](https://grafana.com/media/docs/alerting/alert-instance-flow.jpg)
-
-![Image](https://grafana.com/docs/loki/latest/get-started/loki_architecture_components.svg)
-
-![Image](https://miro.medium.com/1%2AmjBhl49_TNNJqZmOc8dQpw.png)
-
----
-
 # 🚨 ALERTING PRACTICE (Prometheus + Grafana)
 
 ## 🎯 What You’ll Practice
