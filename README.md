@@ -103,6 +103,7 @@ cd /tmp
 wget https://github.com/prometheus/prometheus/releases/download/v2.49.1/prometheus-2.49.1.linux-amd64.tar.gz
 tar xvf prometheus-2.49.1.linux-amd64.tar.gz
 sudo mv prometheus-2.49.1.linux-amd64 /etc/prometheus
+sudo apt install prometheus
 ```
 
 ### Configure Prometheus
@@ -112,13 +113,35 @@ sudo nano /etc/prometheus/prometheus.yml
 ```
 
 ```yaml
+# Global configuration
 global:
   scrape_interval: 15s
+  evaluation_interval: 15s
 
+# Alertmanager configuration (optional)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - "localhost:9093"
+
+# Rule files (optional)
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# Scrape configurations
 scrape_configs:
-  - job_name: 'node_exporter'
+
+  # Prometheus itself
+  - job_name: "prometheus"
     static_configs:
-      - targets: ['localhost:9100']
+      - targets: ["localhost:9090"]
+
+  # Node Exporter
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
 ```
 
 ### Create Prometheus Service
@@ -143,13 +166,13 @@ WantedBy=multi-user.target
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable prometheus
-sudo systemctl start prometheus
+sudo systemctl restart prometheus
 ```
 
 ✅ Verify
 
 ```
-http://<VM_IP>:9090
+http://20.62.198.127:9090
 ```
 
 ---
@@ -174,7 +197,7 @@ sudo systemctl status grafana-server
 ✅ Access
 
 ```
-http://<VM_IP>:3000
+http://20.62.198.127:3000
 ```
 
 * Username: `admin`
