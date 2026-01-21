@@ -1,4 +1,4 @@
-# AzureVM-Grafana-Prometheus-Node-Exporter
+# AzureVM | Grafana, Prometheus, Node-Exporter
 
 Below is a **clean, production-ready guide** to set up **Grafana + Prometheus + Node Exporter on an Azure VM** (Ubuntu).
 This is **trainer-friendly**, **lab-ready**, and suitable for **DevOps / Cloud monitoring demos**.
