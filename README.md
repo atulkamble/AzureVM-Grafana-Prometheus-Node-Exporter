@@ -810,3 +810,149 @@ fi
 > *High CPU alerts are triggered using PromQL over node_cpu_seconds_total idle time, combined with diagnostic scripts to identify rogue processes.*
 
 ---
+Here is the **exact, correct place** to **save & run High-CPU alert and script** in a **Grafana + Prometheus + Node Exporter** setup (Linux VM / server).
+
+---
+
+## 📁 1️⃣ Where to Save **Prometheus High-CPU Alert Rule**
+
+### 📍 Location (Standard & Recommended)
+
+```
+/etc/prometheus/
+```
+
+### 📄 File
+
+```
+/etc/prometheus/high-cpu-alert.yml
+```
+
+### 🔧 Commands
+
+```bash
+sudo nano /etc/prometheus/high-cpu-alert.yml
+```
+
+Paste the **High CPU alert YAML**.
+
+---
+
+### 🔗 Link Alert File in Prometheus Config
+
+Edit:
+
+```bash
+sudo nano /etc/prometheus/prometheus.yml
+```
+
+Ensure:
+
+```yaml
+rule_files:
+  - "/etc/prometheus/high-cpu-alert.yml"
+```
+
+---
+
+### 🔄 Reload Prometheus
+
+```bash
+sudo systemctl restart prometheus
+```
+
+✅ Alert will appear in **Grafana → Alerting**
+
+---
+
+## 📁 2️⃣ Where to Save **High CPU Script (Linux)**
+
+### 📍 Recommended Locations
+
+| Purpose            | Path              |
+| ------------------ | ----------------- |
+| Manual diagnostics | `/opt/scripts/`   |
+| Automation / cron  | `/usr/local/bin/` |
+
+### ✅ Best Practice
+
+```
+/opt/scripts/high_cpu_check.sh
+```
+
+---
+
+### 🔧 Create Script
+
+```bash
+sudo mkdir -p /opt/scripts
+sudo nano /opt/scripts/high_cpu_check.sh
+```
+
+Paste script code.
+
+---
+
+### ▶️ Make Executable
+
+```bash
+sudo chmod +x /opt/scripts/high_cpu_check.sh
+```
+
+---
+
+### ▶️ Run Manually
+
+```bash
+sudo /opt/scripts/high_cpu_check.sh
+```
+
+---
+
+## ⏱️ 3️⃣ Run Script Automatically (Optional)
+
+### 🕒 Using Cron
+
+```bash
+sudo crontab -e
+```
+
+Run every 5 minutes:
+
+```cron
+*/5 * * * * /opt/scripts/high_cpu_check.sh >> /var/log/high_cpu.log
+```
+
+---
+
+## 🔔 4️⃣ Alert → Script Flow (Production Pattern)
+
+```
+Node Exporter
+   ↓
+Prometheus (High CPU Alert)
+   ↓
+Alertmanager (Webhook)
+   ↓
+Script Trigger (optional)
+```
+
+> ⚠️ **Prometheus does NOT execute scripts directly**
+> Scripts run via **Alertmanager Webhook / Cron / Systemd**
+
+---
+
+## 📌 Quick Interview Answer
+
+> *Prometheus alert rules are stored under `/etc/prometheus`, while diagnostic or remediation scripts are stored in `/opt/scripts` or `/usr/local/bin` and executed manually or via automation.*
+
+---
+
+## ✅ Final Checklist
+
+✔ Alert YAML → `/etc/prometheus/high-cpu-alert.yml`
+✔ Prometheus config → `/etc/prometheus/prometheus.yml`
+✔ Script → `/opt/scripts/high_cpu_check.sh`
+✔ Execution → `chmod +x` + run / cron
+
+---
