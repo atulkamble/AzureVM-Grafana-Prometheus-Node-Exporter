@@ -129,6 +129,7 @@ wget https://github.com/prometheus/prometheus/releases/download/v2.49.1/promethe
 tar xvf prometheus-2.49.1.linux-amd64.tar.gz
 sudo mv prometheus-2.49.1.linux-amd64 /etc/prometheus
 sudo apt install prometheus
+sudo snap install prometheus
 ```
 
 ### Configure Prometheus
