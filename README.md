@@ -131,6 +131,13 @@ sudo mv prometheus-2.49.1.linux-amd64 /etc/prometheus
 sudo apt install prometheus
 sudo snap install prometheus
 ```
+```
+sudo useradd \
+  --system \
+  --no-create-home \
+  --shell /bin/false \
+  prometheus
+```
 
 ### Configure Prometheus
 
@@ -200,6 +207,11 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 ```
+sudo mkdir -p /var/lib/prometheus
+sudo mkdir -p /etc/prometheus/consoles
+sudo mkdir -p /etc/prometheus/console_libraries
+sudo chown -R prometheus:prometheus /etc/prometheus
+sudo chown -R prometheus:prometheus /var/lib/prometheus
 
 ```bash
 sudo systemctl daemon-reload
