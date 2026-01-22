@@ -193,6 +193,7 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 sudo systemctl enable prometheus
 sudo systemctl restart prometheus
+sudo systemctl status prometheus
 ```
 
 ✅ Verify
