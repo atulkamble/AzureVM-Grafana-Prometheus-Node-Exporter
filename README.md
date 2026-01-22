@@ -162,12 +162,14 @@ scrape_configs:
   # Prometheus itself
   - job_name: "prometheus"
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets:
+      - "localhost:9090"
 
   # Node Exporter
   - job_name: "node_exporter"
     static_configs:
       - targets: ["localhost:9100"]
+
 ```
 
 ### Create Prometheus Service
