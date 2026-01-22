@@ -5,6 +5,32 @@ This is **trainer-friendly**, **lab-ready**, and suitable for **DevOps / Cloud m
 
 ---
 
+### 🚀 Why use **Grafana + Prometheus + Node Exporter** (in short)
+
+* **📊 Grafana** – Visualize metrics with **dashboards & graphs**
+* **📥 Prometheus** – **Collects, stores, and queries** time-series metrics
+* **🖥️ Node Exporter** – Exposes **server/VM metrics** (CPU, memory, disk, network)
+
+---
+
+### 🔑 Combined Benefits
+
+* **📈 Real-time system monitoring**
+* **⚠️ Early alerting** on CPU, memory, disk, service issues
+* **🔍 Deep visibility** into Linux server performance
+* **🧩 Open-source & cloud-native**
+* **☁️ Works on VMs, containers, Kubernetes**
+* **🛠️ Easy integration with alerts (Slack, Email, PagerDuty)**
+
+---
+
+### ✅ Typical Use Cases
+
+* Monitor **Linux servers / cloud VMs**
+* Track **application & infra health**
+* **Troubleshoot performance issues**
+* Build **SRE / DevOps observability stack**
+
 ## 🧩 Architecture Overview
 
 **Flow**
