@@ -207,12 +207,13 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 ```
+```
 sudo mkdir -p /var/lib/prometheus
 sudo mkdir -p /etc/prometheus/consoles
 sudo mkdir -p /etc/prometheus/console_libraries
 sudo chown -R prometheus:prometheus /etc/prometheus
 sudo chown -R prometheus:prometheus /var/lib/prometheus
-
+```
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable prometheus
