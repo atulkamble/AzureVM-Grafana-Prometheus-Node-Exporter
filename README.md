@@ -142,6 +142,7 @@ sudo useradd \
 ### Configure Prometheus
 
 ```bash
+sudo rm /etc/prometheus/prometheus.yml
 sudo nano /etc/prometheus/prometheus.yml
 ```
 
